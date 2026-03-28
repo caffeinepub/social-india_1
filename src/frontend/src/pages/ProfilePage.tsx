@@ -48,12 +48,6 @@ export function ProfilePage({
   const myPosts = samplePosts;
   const savedPosts = samplePosts.filter((_, i) => i % 2 !== 0);
 
-  const principal = identity?.getPrincipal().toString() ?? "Anonymous";
-  const shortPrincipal =
-    principal.length > 16
-      ? `${principal.slice(0, 8)}...${principal.slice(-4)}`
-      : principal;
-
   const initials = displayName
     .split(" ")
     .map((w) => w[0])
@@ -139,6 +133,11 @@ export function ProfilePage({
                 ✅
               </span>
             )}
+            {identity && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-[#FF9933] text-white select-none">
+                Official
+              </span>
+            )}
             {!isEditing && (
               <Button
                 data-ocid="profile.edit_button"
@@ -152,8 +151,8 @@ export function ProfilePage({
             )}
           </div>
 
-          <p className="text-xs text-muted-foreground mb-3">
-            @{shortPrincipal}
+          <p className="text-xs font-medium text-primary mb-3">
+            @social.india.official
           </p>
 
           <div className="flex gap-6 mb-3">

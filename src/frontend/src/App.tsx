@@ -16,9 +16,6 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 
 type View = "feed" | "search" | "explore" | "profile" | "create";
 
-// The owner's username — every new user auto-follows this account
-export const OWNER_USERNAME = "social.india.official";
-
 function loadFollowedUsers(): Set<string> {
   try {
     const saved = localStorage.getItem("followed_users");
@@ -28,10 +25,7 @@ function loadFollowedUsers(): Set<string> {
   } catch {
     // ignore
   }
-  // First-time user: auto-follow the owner
-  const initial = new Set([OWNER_USERNAME]);
-  localStorage.setItem("followed_users", JSON.stringify([OWNER_USERNAME]));
-  return initial;
+  return new Set();
 }
 
 export default function App() {
@@ -53,8 +47,6 @@ export default function App() {
   }, [followedUsers]);
 
   const handleToggleFollow = (username: string) => {
-    // Prevent unfollowing the owner
-    if (username === OWNER_USERNAME) return;
     setFollowedUsers((prev) => {
       const next = new Set(prev);
       if (next.has(username)) {

@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Grid3X3, MapPin, Users } from "lucide-react";
-import { OWNER_USERNAME } from "../App";
 import { PostCard } from "../components/PostCard";
 import type { ViewableUser } from "../components/PostCard";
 import { OWNER_PROFILE } from "../data/ownerProfile";
 import { samplePosts, sampleStories, suggestedUsers } from "../data/sampleData";
 import type { SamplePost } from "../data/sampleData";
+
+const OWNER_USERNAME = OWNER_PROFILE.username;
 
 const BIO_MAP: Record<string, string> = {
   "priya.sharma":
@@ -137,6 +138,11 @@ export function UserProfilePage({
                 ✅
               </span>
             )}
+            {isOwner && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-[#FF9933] text-white select-none">
+                Official
+              </span>
+            )}
             {!isOwner && (
               <Button
                 data-ocid="userprofile.primary_button"
@@ -151,14 +157,11 @@ export function UserProfilePage({
                 {following ? "Following" : "Follow"}
               </Button>
             )}
-            {isOwner && (
-              <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                Following
-              </span>
-            )}
           </div>
 
-          <p className="text-xs text-muted-foreground mb-3">@{user.username}</p>
+          <p className="text-xs font-medium text-primary mb-3">
+            @{isOwner ? "social.india.official" : user.username}
+          </p>
 
           <div className="flex gap-6 mb-3">
             <span className="text-sm">

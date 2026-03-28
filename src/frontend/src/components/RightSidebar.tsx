@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { OWNER_USERNAME } from "../App";
 import { OWNER_PROFILE } from "../data/ownerProfile";
 import { suggestedUsers, trendingTags } from "../data/sampleData";
 import type { ViewableUser } from "./PostCard";
@@ -56,7 +55,7 @@ export function RightSidebar({ onViewUser }: RightSidebarProps) {
               </div>
             </button>
             <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-              Following
+              Follow
             </span>
           </div>
 
